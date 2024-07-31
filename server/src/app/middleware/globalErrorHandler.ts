@@ -5,7 +5,6 @@ import { ErrorRequestHandler } from "express";
 import { ZodError } from "zod";
 import config from "../config";
 import { TErrorMessages } from "../interface";
-import { handleJsonWebTokenError, handleTokenExpiredError, notBeforeError } from "../errors/jwtError";
 import handleCastError from "../errors/handleCastError";
 import mongooseValiDationError from "../errors/mongooseValidationError";
 import handleDuplicateError from "../errors/handleDuplicateError";
@@ -50,22 +49,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     message = getTheErrorData.message;
     statusCode = getTheErrorData.statusCode;
     errorMessages = getTheErrorData.errorMessages;
-  } else if (err?.name === "TokenExpiredError") {
-    const getTheErrorData = handleTokenExpiredError(err);
-    statusCode = getTheErrorData.statusCode;
-    message = getTheErrorData.message;
-    errorMessages = getTheErrorData.errorMessages;
-  } else if (err?.name === "JsonWebTokenError") {
-    const getTheErrorData = handleJsonWebTokenError(err);
-    statusCode = getTheErrorData.statusCode;
-    message = getTheErrorData.message;
-    errorMessages = getTheErrorData.errorMessages;
-  } else if (err?.name === "NotBeforeError") {
-    const getTheErrorData = notBeforeError(err);
-    statusCode = getTheErrorData.statusCode;
-    message = getTheErrorData.message;
-    errorMessages = getTheErrorData.errorMessages;
-  } else if (err instanceof AppError) {
+  }  else if (err instanceof AppError) {
     statusCode = err.statusCode;
     message = err.message;
     errorMessages = [
@@ -87,7 +71,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     success: false,
     message,
     errorMessages,
-    stack: config.NODE_ENV === "development" ? err?.stack : null,
+    stack:  err?.stack 
   });
 };
 

@@ -10,6 +10,7 @@ let server: Server;
 
 async function main() {
   try {
+    // console.log(config.DATABASE_URL,'url haha');
     await mongoose.connect(config.DATABASE_URL as string);
     server = app.listen(3000, () => {
       console.log('app is listening on port 3000');
