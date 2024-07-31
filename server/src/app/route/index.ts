@@ -5,14 +5,11 @@ const router = express.Router();
 
 const modularRouter = [
   {
-    path:"/products",
-    route:ProductRouter
-  }
-]
+    path: "/products",
+    route: ProductRouter,
+  },
+];
 
+modularRouter.forEach((route) => router.use(route.path, route.route));
 
-modularRouter.forEach((route) => router.use(route.path,route.route));
-
-export default router
-
-
+export default router;

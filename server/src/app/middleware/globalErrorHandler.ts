@@ -1,5 +1,4 @@
-
- // eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler } from "express";
 import { ZodError } from "zod";
@@ -49,7 +48,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     message = getTheErrorData.message;
     statusCode = getTheErrorData.statusCode;
     errorMessages = getTheErrorData.errorMessages;
-  }  else if (err instanceof AppError) {
+  } else if (err instanceof AppError) {
     statusCode = err.statusCode;
     message = err.message;
     errorMessages = [
@@ -71,7 +70,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     success: false,
     message,
     errorMessages,
-    stack:  err?.stack 
+    stack: err?.stack,
   });
 };
 

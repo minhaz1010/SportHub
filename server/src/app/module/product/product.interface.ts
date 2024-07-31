@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 
 export interface IProduct {
   name: string;
-  image:string;
+  image: string;
   brand: string;
   price: number;
   description: string;
