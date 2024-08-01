@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 import catchAsyncErrors from "../../utils/catchAsyncError";
 import sendResponse from "../../utils/sendResponse";
 import { ProductServices } from "./product.service";
+import { Request, Response } from "express";
 
 // & create product
 const createProduct = catchAsyncErrors(async (req, res) => {
@@ -78,6 +79,7 @@ const createCategory = catchAsyncErrors(async (req, res) => {
 
 // & get all category
 const getAllCategory = catchAsyncErrors(async (req, res) => {
+  
   const result = await ProductServices.getAllCategoryFromDatabase();
   sendResponse(res, {
     success: true,
@@ -86,6 +88,8 @@ const getAllCategory = catchAsyncErrors(async (req, res) => {
     result,
   });
 });
+
+
 
 // & get all products by category
 

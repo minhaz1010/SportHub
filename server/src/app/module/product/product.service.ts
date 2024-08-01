@@ -67,10 +67,10 @@ const createCategoryInDatabase = async (payload: ICategory) => {
 // * get all category
 const getAllCategoryFromDatabase = async () => {
   const result = await Category.find();
-  if (!result.length) {
-    throw new AppError(httpStatus.NOT_FOUND, "No Category Found");
+  if(!result.length){
+    throw new AppError(httpStatus.NOT_FOUND,'Sorry No Data Found')
   }
-  return result;
+  return result
 };
 
 // * get all product by category

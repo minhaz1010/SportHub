@@ -10,6 +10,7 @@ router.post(
   validateRequest(ProductValidation.createProductValidationSchema),
   ProductController.createProduct,
 );
+router.get("/category", ProductController.getAllCategory);
 
 router.get("/:id", ProductController.getAProduct);
 
@@ -28,7 +29,6 @@ router.post(
   validateRequest(ProductValidation.createCategory),
   ProductController.createCategory,
 );
-router.get("/all-category", ProductController.getAllCategory);
 
 router.get("/category/:id", ProductController.getProductByCategory);
 

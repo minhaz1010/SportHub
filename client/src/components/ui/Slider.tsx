@@ -35,7 +35,7 @@ const Slider = () => {
 
 
   return (
-    <div className='container mx-auto overflow-hidden rounded-xl slider'>
+    <div className='container mx-auto overflow-hidden rounded-xl slider mb-7'>
       <Carousel
         showArrows={true}
         autoPlay={true}
