@@ -1,13 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
-import Slider from './Slider';
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const mobileMenuRef = useRef(null);
+interface NavItemProps {
+  to: string;
+  text: string;
+}
+
+const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     let mm = gsap.matchMedia();
@@ -35,7 +39,6 @@ const Navbar = () => {
           y: -100,
           ease: "bounce.out"
         })
-
     });
 
     mm.add("(max-width: 1023px)", () => {
@@ -60,7 +63,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && mobileMenuRef.current) {
       // Open animation
       gsap.fromTo(mobileMenuRef.current.children,
         { opacity: 0, y: 20 },
@@ -85,8 +88,8 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
-  const toggleMenu = () => {
-    if (!isOpen) {
+  const toggleMenu = (): void => {
+    if (!isOpen && mobileMenuRef.current) {
       // Ensure the menu is visible before animating in
       gsap.set(mobileMenuRef.current, { display: 'block' });
     }
@@ -147,12 +150,11 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
     </nav>
   );
 };
 
-const NavItem = ({ to, text }) => (
+const NavItem: React.FC<NavItemProps> = ({ to, text }) => (
   <Link to={to}>
     <h4 className='text-2xl text-gray-600 hover:text-gray-800 hover:shadow-blue-200 hover:shadow-md duration-500 p-2 rounded-xl'>
       {text}
@@ -160,7 +162,7 @@ const NavItem = ({ to, text }) => (
   </Link>
 );
 
-const MobileNavItem = ({ to, text }) => (
+const MobileNavItem: React.FC<NavItemProps> = ({ to, text }) => (
   <Link to={to}>
     <h4 className='text-xl text-gray-600 hover:text-gray-800 hover:bg-gray-100 duration-300 p-3 rounded-xl'>
       {text}
