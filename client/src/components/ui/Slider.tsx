@@ -41,6 +41,7 @@ const Slider = () => {
         autoPlay={true}
         infiniteLoop={true}
         // stopOnHover={false}
+        interval={5000}
         showThumbs={true}
       >
         <div>
