@@ -1,9 +1,14 @@
 import Navbar from "./Navbar";
+import Slider from "./Slider";
+
 
 const Header = () => {
+
+
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar ></Navbar>
+      <Slider ></Slider>
     </>
   );
 };

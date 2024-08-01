@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
+import Slider from './Slider';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,17 +34,18 @@ const Navbar = () => {
           duration: 0.5,
           y: -100,
           ease: "bounce.out"
-        });
+        })
+
     });
 
     mm.add("(max-width: 1023px)", () => {
       // Mobile and tablet animation
       gsap.from(".sporthub > *", {
         opacity: 0,
-        duration: 0.5,
+        duration: 1,
         delay: 0.3,
-        x: -50,
-        stagger: 0.5
+        x: -100,
+        stagger: 1
       });
 
       gsap.from(".mobile-menu-button", {
@@ -145,6 +147,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
     </nav>
   );
 };
