@@ -11,7 +11,7 @@ const Slider = () => {
     mm.add("(min-width: 1024px)", () => {
       gsap.from(".slider > *", {
         duration: 1,
-        delay: 3.7,
+        delay: 3,
         opacity: 0,
         y: -200,
         ease: "back.out"

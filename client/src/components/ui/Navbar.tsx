@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import gsap from "gsap";
+import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 interface NavItemProps {
@@ -24,14 +24,14 @@ const Navbar: React.FC = () => {
         duration: 0.5,
         delay: 0.3,
         y: -100,
-        stagger: 0.5
+        stagger: 0.3
       })
         .from(".d-menu > *", {
           opacity: 0,
           duration: 0.5,
           y: -100,
-          stagger: 0.5,
-          ease: "bounce.out"
+          stagger: 0.3,
+          // ease: "bounce.out"
         })
         .from(".cart", {
           opacity: 0,
@@ -108,21 +108,21 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Menu */}
           <div className='hidden lg:flex justify-center items-center gap-8 p-4 d-menu'>
-            <NavItem to="#" text="Home" />
-            <NavItem to="#" text="Products" />
-            <NavItem to="#" text="Manage Products" />
-            <NavItem to="#" text="About us" />
+            <NavItem to="/" text="Home" />
+            <NavItem to="/products" text="Products" />
+            <NavItem to="/manage-products" text="Manage Products" />
+            <NavItem to="/about" text="About us" />
           </div>
 
           {/* Cart Icon */}
           <div className='hidden lg:block cart'>
-            <Link to="#">
+            <NavLink to="#">
               <img
                 src="https://i.ibb.co/2gGHHGw/icons8-cart-96.png"
                 className='size-14 rounded-lg transition-transform duration-300 transform hover:scale-125'
                 alt="Cart Icon"
               />
-            </Link>
+            </NavLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -135,18 +135,18 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         <div ref={mobileMenuRef} className={`lg:hidden pb-4 mobile-menu ${isOpen ? 'block' : 'hidden'}`}>
-          <MobileNavItem to="#" text="Home" />
-          <MobileNavItem to="#" text="Products" />
-          <MobileNavItem to="#" text="Manage Products" />
-          <MobileNavItem to="#" text="About us" />
+          <MobileNavItem to="/" text="Home" />
+          <MobileNavItem to="/products" text="Products" />
+          <MobileNavItem to="/manage-products" text="Manage Products" />
+          <MobileNavItem to="/about" text="About us" />
           <div className="flex justify-center mt-4">
-            <Link to="#">
+            <NavLink to="#">
               <img
                 src="https://i.ibb.co/2gGHHGw/icons8-cart-96.png"
                 className='size-14 rounded-lg transition-transform duration-300 transform hover:scale-125'
                 alt="Cart Icon"
               />
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -155,19 +155,29 @@ const Navbar: React.FC = () => {
 };
 
 const NavItem: React.FC<NavItemProps> = ({ to, text }) => (
-  <Link to={to}>
-    <h4 className='text-2xl text-gray-600 hover:text-gray-800 hover:shadow-blue-200 hover:shadow-md duration-500 p-2 rounded-xl'>
+  <NavLink
+    to={to}
+    className={({ isActive }) =>
+      isActive ? 'text-2xl text-gray-800 font-bold' : 'text-2xl text-gray-600'
+    }
+  >
+    <h4 className='hover:text-gray-800 hover:shadow-blue-200 hover:shadow-md duration-500 p-2 rounded-xl'>
       {text}
     </h4>
-  </Link>
+  </NavLink>
 );
 
 const MobileNavItem: React.FC<NavItemProps> = ({ to, text }) => (
-  <Link to={to}>
-    <h4 className='text-xl text-gray-600 hover:text-gray-800 hover:bg-gray-100 duration-300 p-3 rounded-xl'>
+  <NavLink
+    to={to}
+    className={({ isActive }) =>
+      isActive ? 'text-xl text-gray-800 font-bold' : 'text-xl text-gray-600'
+    }
+  >
+    <h4 className='hover:text-gray-800 hover:bg-gray-100 duration-300 p-3 rounded-xl'>
       {text}
     </h4>
-  </Link>
+  </NavLink>
 );
 
 export default Navbar;
